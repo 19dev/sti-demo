@@ -1,0 +1,2 @@
+class FullTimeEmployee < Employee
+end

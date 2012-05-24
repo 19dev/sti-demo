@@ -1,0 +1,2 @@
+class TempEmployee < Employee
+end

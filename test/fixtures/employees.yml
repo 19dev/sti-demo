@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  salary: MyString
+  hours: MyString
+  duration: MyString
+  university: MyString
+  type: 
+
+two:
+  name: MyString
+  salary: MyString
+  hours: MyString
+  duration: MyString
+  university: MyString
+  type: 
