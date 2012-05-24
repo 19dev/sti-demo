@@ -68,18 +68,18 @@ Console,
   `administrators_roles` tablosu) yerine tek bir join tablo (`users_roles`)
   kullanılıyor
 
-- bunu başarmak için ise, her bir alt modelde ör. Administrator
+- bunu başarmak için ise, her bir alt modelde ör. `Administrator`
 
-    class Administrator < User
-        has_and_belongs_to_many :roles, :join_table => 'users_roles', 
-            :foreign_key => 'user_id'
-    end
+        class Administrator < User
+            has_and_belongs_to_many :roles, :join_table => 'users_roles', 
+                :foreign_key => 'user_id'
+        end
 
 - bundan sonrasında ise
 
-    > Editor.last.roles
-    > Editor.last.roles.create(name: "foo")
-    > Editor.last.role_ids = [1, 3]
+        > Editor.last.roles
+        > Editor.last.roles.create(name: "foo")
+        > Editor.last.role_ids = [1, 3]
 
 # Kaynaklar
 
