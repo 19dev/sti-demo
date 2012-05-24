@@ -47,14 +47,39 @@ Console,
         updated_at: 2012-05-24 13:17:41.151248000 Z
     => nil
     >
-    > Role.create(name: "Kullanıcı Yönetimi")
-    > Role.create(name: "Soru İşlemleri")
-    > Role.create(name: "Cari İşlemler")
-    > Role.create(name: "İçerik Yönetimi")
+    > Role.create(name: "Kullanıcı Yönetimi")   #=> role_id: 1
+    > Role.create(name: "Soru İşlemleri")       #=> role_id: 2
+    > Role.create(name: "Cari İşlemler")        #=> role_id: 3
+    > Role.create(name: "İçerik Yönetimi")      #=> role_id: 4
     >
-    > Administrator.first.role_ids = [1,3]
+    > Administrator.first.role_ids = [1,3]      #=> role_id: 1 ve 3 olan rolleri ver
     > Administrator.first.roles
     [#<Role id: 1, name: "Kullanıcı Yönetimi"...>, #<Role id: 3, name: "Cari İşlemler",...>]
+    >
+    > Editor.last.roles.create(name: "roleX")
+    > Editor.last.role_ids
+    [5]
+    > User.last.role_ids    #=> Editor.last
+    [5]
+
+## Kritik Bilgi
+
+- User'ın altında yer alan her bir alt model için join table (ör.
+  `administrators_roles` tablosu) yerine tek bir join tablo (`users_roles`)
+  kullanılıyor
+
+- bunu başarmak için ise, her bir alt modelde ör. Administrator
+
+    class Administrator < User
+        has_and_belongs_to_many :roles, :join_table => 'users_roles', 
+            :foreign_key => 'user_id'
+    end
+
+- bundan sonrasında ise
+
+    > Editor.last.roles
+    > Editor.last.roles.create(name: "foo")
+    > Editor.last.role_ids = [1, 3]
 
 # Kaynaklar
 
