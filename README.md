@@ -1,49 +1,61 @@
-# STI (Single Table Inheritance)
+# User + Role
 
-Gerçeklemeye konu olan nesne yapısı/ilişkisi,
+İlgili nesne yapısı/ilişkisine dair çizim,
 
-![employee](http://yuml.me/89799181.jpg)
+![user](http://yuml.me/3dff02a2.jpg)
 
 Console,
 
-    > FullTimeEmployee.create!(:name => "Jim", :salary => "10,000", :hours => "37")
-    > TempEmployee.create!(:name => "John", :salary => "15,000", :duration => "5")
-    > StudentEmployee.create!(:name => "Joe", :salary => "20,000", 
-        :university => "Queens University, Belfast")
-    > y Employee.all
-      Employee Load (0.2ms)  SELECT "employees".* FROM "employees" 
+    > Administrator.create(name: "admin")
+    > Editor.create(name: "editor")
+    > Author.create(name: "author")
+    > 
+    > y Administrator.first
+    --- !ruby/object:Administrator
+    attributes:
+      id: 1
+      name: admin
+      type: Administrator
+      created_at: 2012-05-24 13:16:14.604016000 Z
+      updated_at: 2012-05-24 13:16:14.604016000 Z
+    => nil
+    > y Editor.first
+    --- !ruby/object:Editor
+    attributes:
+        id: 2
+        name: editor
+        type: Editor
+        created_at: 2012-05-24 13:17:41.151248000 Z
+        updated_at: 2012-05-24 13:17:41.151248000 Z
+    => nil
+    >
+    > y User.all
     ---
-    - !ruby/object:FullTimeEmployee
+    - !ruby/object:Administrator
       attributes:
         id: 1
-        name: Jim
-        salary: '10,000'
-        hours: '37'
-        duration: 
-        university: 
-        type: FullTimeEmployee
-        created_at: 2012-05-24 08:36:18.960678000 Z
-        updated_at: 2012-05-24 08:36:18.960678000 Z
-    - !ruby/object:TempEmployee
+        name: admin
+        type: Administrator
+        created_at: 2012-05-24 13:16:14.604016000 Z
+        updated_at: 2012-05-24 13:16:14.604016000 Z
+    - !ruby/object:Editor
       attributes:
         id: 2
-        name: John
-        salary: '15,000'
-        hours: 
-        duration: '5'
-        university: 
-        type: TempEmployee
-        created_at: 2012-05-24 08:37:22.752618000 Z
-        updated_at: 2012-05-24 08:37:22.752618000 Z
-    - !ruby/object:StudentEmployee
-      attributes:
-        id: 3
-        name: Joe
-        salary: '20,000'
-        hours: 
-        duration: 
-        university: Queens University, Belfast
-        type: StudentEmployee
-        created_at: 2012-05-24 08:37:54.233763000 Z
-        updated_at: 2012-05-24 08:37:54.233763000 Z
+        name: editor
+        type: Editor
+        created_at: 2012-05-24 13:17:41.151248000 Z
+        updated_at: 2012-05-24 13:17:41.151248000 Z
     => nil
+    >
+    > Role.create(name: "Kullanıcı Yönetimi")
+    > Role.create(name: "Soru İşlemleri")
+    > Role.create(name: "Cari İşlemler")
+    > Role.create(name: "İçerik Yönetimi")
+    >
+    > Administrator.first.role_ids = [1,3]
+    > Administrator.first.roles
+    [#<Role id: 1, name: "Kullanıcı Yönetimi"...>, #<Role id: 3, name: "Cari İşlemler",...>]
+
+# Kaynaklar
+
+- http://stackoverflow.com/questions/4381154/rails-migration-for-has-and-belongs-to-many-join-table
