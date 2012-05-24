@@ -1,3 +1,8 @@
+# Dallar
+
+- master
+- [10-user](https://github.com/19test/sti-demo/tree/10-user)
+
 # STI (Single Table Inheritance)
 
 Gerçeklemeye konu olan nesne yapısı/ilişkisi,
