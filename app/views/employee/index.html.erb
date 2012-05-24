@@ -1,0 +1,17 @@
+<h1>Employee#index</h1>
+<p>Find me in app/views/employee/index.html.erb</p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Salary</td>
+      <td>Type</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |e| %>
+      <%= p raw("<tr><td>#{e.name}</td><td>#{e.salary}</td><td>#{e.type}</td></tr>") %>
+    <% end %>
+  </tbody>
+</table>
