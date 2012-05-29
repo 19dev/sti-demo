@@ -3,6 +3,9 @@
 - master
 - [10-user](https://github.com/19test/sti-demo/tree/10-user)
 
+Burada STI'den konuşacağız fakat MTI'de var
+<http://mediumexposure.com/multiple-table-inheritance-active-record/>
+
 # STI (Single Table Inheritance)
 
 Gerçeklemeye konu olan nesne yapısı/ilişkisi,
